@@ -14,15 +14,15 @@
 
 struct SMap // The struct is a block of variables to be used to store our map information
 {
-    int												Width; // Declare Width and Depth variables which will hold the active map size
-    int												Depth;  
-    int												FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
+	int												Width; // Declare Width and Depth variables which will hold the active map size
+	int												Depth;  
+	int												FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
 };
 
 struct SCharacter // hold character data	
 {
-    int												HP; // health points
-    int												x, z; // coordinates in map
+	int												HP; // health points
+	int												x, z; // coordinates in map
 };
 
 void											setup										( SMap* activeMap	, SCharacter* player, SCharacter* enemy );	// Accepts addresses pointing to SMap and SCharacter data
@@ -30,7 +30,7 @@ void											update										( SMap* activeMap	, SCharacter* player, SCharacte
 void											draw										( SMap someMap		, SCharacter player, SCharacter enemy );	// Accepts a copy of the data found in the game structures.
 
 int												main										()																	{	// Application starts from here
-	SMap												gameMap;			// declare a variable of type SMap
+	SMap												gameMap;			// declare a variable of type SMap. This is almost the same as defining each variable of SMap but shorter, and we can acess to the members with a dot, as in gameMap.Width or gameMap.FloorCells[z][x]
 	SCharacter											playerCharacter;	// Declare a variable of type SCharacter for the player
 	SCharacter											enemyCharacter;		// and another SCharacter instance for the enemy
 

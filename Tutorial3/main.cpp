@@ -9,7 +9,7 @@
 #define TILE_WATER   2
 #define TILE_LAVA    3
 
-#define MAX_MAP_WIDTH    256 // define a maximum size to our game map
+#define MAX_MAP_WIDTH    256 // define some constant values for setting a maximum size to our game map
 #define MAX_MAP_DEPTH    256   
 
 struct SMap // The struct is a block of variables to be used to store our map information. 
@@ -27,19 +27,20 @@ void													draw											( SMap someMap );		// Accepts as parameter a cop
 
 int														main											()						{
 	// The program starts from here
-	SMap														gameMap;      // declare a variable of type SMap
+	SMap														gameMap;      // declare a variable of type SMap. This is almost the same as defining each variable of SMap but shorter, and we can acess to the members with a dot, as in gameMap.Width or gameMap.FloorCells[z][x]
+
 	setup( &gameMap ); // call setup() and send the address of our gameMap as parameter
 
 	int															frameCounter									= 0; // declare a variable for keeping track of the number of frame since execution began, where "int" stands for "integer"
 
-	while( true ) {	// execute code block {} while the condition that's inside () is true
+	while( true ) {	// execute code block {} while the condition that's inside parenthesis () is true
 		printf("Current frame number: %i\n", frameCounter);
 
 		update	( &gameMap );	// update frame, send map address to update() call
 		draw	( gameMap );	// render frame, send copy of the data to be displayed by draw()
 
 		if(GetAsyncKeyState(VK_ESCAPE)) // check for escape key pressed
-			break;	// exit while(). If the code that executes when the if() evaluates to true doesn't have braces, then the block that executes when the condition evaluates to true ends in the next semicolon (;) 
+			break;	// exit while(). If the code that executes when the if() evaluates to true doesn't have braces, then the block that executes when the condition evaluates to true ends in the next semicolon (;). The same applies for "for()" and "while()".
 
 		Sleep(50);	// Wait some time to give visual stability to the frame (printf() is really ugly for displaying realtime games but for now it will do fine enough).
 		
@@ -62,9 +63,9 @@ void													setup											( SMap* activeMap )		{ // Accepts an address po
 	//		[your code block]; 
 	//	}
 
-	for( int z = 0; z < activeMap->Depth; z = z+1 ) // iterate over every row. This loop ends when Z is equal to the map depth
+	for( int z = 0; z < activeMap->Depth; z = z+1 ) // iterate over every row. This loop ends when z is equal to the map depth. At the end of each iteration, z is incremented by one.
 	{
-		for( int x = 0; x < activeMap->Width; x++ ) // iterate over every column for the x row. This loop ends when X is equal to the map depth
+		for( int x = 0; x < activeMap->Width; x++ ) // iterate over every column for the x row. This loop ends when x is equal to the map width
 		{
 			activeMap->FloorCells[z][x]								= TILE_GRASS; // initialize the (x,z) map cell to "grass"
 		}
