@@ -30,7 +30,7 @@ int						main							()													{	// Our application application starts from 
         
 		Sleep(50);		// wait some time to give visual stability to the frame
         ++frameCounter;	// increase frame counter
-    };
+    }
   
     return 0; // return an int
 }

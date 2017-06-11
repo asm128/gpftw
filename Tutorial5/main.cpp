@@ -147,8 +147,8 @@ void													update										( SGame* gameObject )										{	// Accepts an 
 		 )
 		{
 			gameObject->Player.CurrentPoints.HP						-= 1; // Decrease player life if enemy position matches player position
-			currentEnemy->x											= rand()%gameObject->Map.Width;
-			currentEnemy->z											= rand()%gameObject->Map.Depth;	// set a random position for the enemy so it has to walk again in order to hit the player
+			currentEnemy->x											= rand() % gameObject->Map.Width;
+			currentEnemy->z											= rand() % gameObject->Map.Depth;	// set a random position for the enemy so it has to walk again in order to hit the player
 		}
 		gameObject->Map.EnemyCells[currentEnemy->z][currentEnemy->x] = iEnemy; // assign enemy index to the cell corresponding to this enemy
 	}

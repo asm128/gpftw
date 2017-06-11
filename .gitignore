@@ -1,5 +1,5 @@
 ﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio, but then had to be modified manually because it made a mess by adding redundant lines.
 ################################################################################
 
 /.vs/
@@ -25,3 +25,5 @@
 /Tutorial7/Release
 /Tutorial8/Release
 /Tutorial9/Release
+/Tutorial6.1/Debug
+/Tutorial6.1/Release

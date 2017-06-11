@@ -124,7 +124,7 @@ void drawASCIIMap( const SGame* gameObject )
     imageMap[nImageCursor] = 0; // a null char indicates the end of the character string or text.
 
 	printf( "%s", imageMap );
-};
+}
 
 // This function prints miscelaneous game info
 void drawASCIIGameInfo( const SGame* gameObject )
@@ -134,4 +134,4 @@ void drawASCIIGameInfo( const SGame* gameObject )
 			"- Enemy count: %i\n"
 			"Move (P)layer by pressing the arrow keys to prevent being touched by enemies E, F, G and H.\n", 
 			gameObject->Player.CurrentPoints.HP, gameObject->Player.x, gameObject->Player.z, gameObject->Enemy.size() );
-};
+}
