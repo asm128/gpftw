@@ -50,7 +50,7 @@ int												main										()																	{	// Application starts from her
 		Sleep(150); // wait some time to give visual stability to the frame
 
 		frameCounter++; // increase frame counter
-	};
+	}
 
 	return 0; // return an int
 }

@@ -51,7 +51,7 @@ void setupEnemies( SGame* gameObject )
 
 		gameObject->Enemy.push_back( newEnemy ); // copy the new enemy as a new element at the end of our enemy list.
 	}
-};
+}
 
 // Use this function to update the map tiles
 void updateMap( SGame* gameObject, float fLastFrameTime  ) 
