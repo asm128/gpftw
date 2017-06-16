@@ -14,7 +14,7 @@ void																drawASCIIMap						( const SGame* gameObject )															
 				if( gameObject->Map.ShotsCells[z][x] != INVALID_SHOT )
 					imageMap[nImageCursor++]											= '@'; // draw the enemy as an ascii character
 				else
-					imageMap[nImageCursor++]											= 'E'+gameObject->Map.EnemyCells[z][x]; // draw the enemy as an ascii character
+					imageMap[nImageCursor++]											= char('E' + gameObject->Map.EnemyCells[z][x]); // draw the enemy as an ascii character
 			}
 			else if( gameObject->Map.ShotsCells[z][x] != INVALID_SHOT ) {
 				const SShot																* shot								= &gameObject->Shots[gameObject->Map.ShotsCells[z][x]];
@@ -34,7 +34,7 @@ void																drawASCIIMap						( const SGame* gameObject )															
 					imageMap[nImageCursor++]											= '|'; // draw the enemy as an ascii character
 			}
 			else
-				imageMap[nImageCursor++]											= gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '; // draw the tile as an ascii character
+				imageMap[nImageCursor++]											= char(gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '); // draw the tile as an ascii character
         }
         imageMap[nImageCursor++]											= '\n'; // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row.
     }

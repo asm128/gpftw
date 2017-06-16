@@ -50,8 +50,7 @@ int														main										()															{	// The application starts from
 	setup( &gameInstance ); // call setup() and send the address of our data as parameters
 
 	int															frameCounter								= 0; // declare a variable to keep track of the frame number
-	while( true ) // execute block {} while what's inside () is true
-	{
+	while( true ) { // execute block {} while what's inside () is true
 		printf("Current frame number: %i\n", frameCounter);
 		
 		update	( &gameInstance ); // update frame, send game data address to update() call
@@ -164,8 +163,8 @@ void													draw										( const SGame* gameObject )									{	// Accepts 
 	for( int z=0; z< gameObject->Map.Depth; z++ ) {				// iterate over every row
 		for( int x=0; x< gameObject->Map.Width; x++ ) {				// iterate over every column for the z row
 				 if( gameObject->Player.x == x && gameObject->Player.z == z )	imageMap[nImageCursor++]	= 'P'; // draw the player as an ascii character
-			else if( gameObject->Map.EnemyCells[z][x] != INVALID_ENEMY )		imageMap[nImageCursor++]	= 'E' + gameObject->Map.EnemyCells[z][x]; // draw the enemy as an ascii character
-			else																imageMap[nImageCursor++]	= gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '; // draw the tile as an ascii character
+			else if( gameObject->Map.EnemyCells[z][x] != INVALID_ENEMY )		imageMap[nImageCursor++]	= char('E' + gameObject->Map.EnemyCells[z][x]); // draw the enemy as an ascii character
+			else																imageMap[nImageCursor++]	= char(gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '); // draw the tile as an ascii character
 		}
 		imageMap[nImageCursor++]								= '\n'; // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row.
 	}

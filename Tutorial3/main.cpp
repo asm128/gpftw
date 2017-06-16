@@ -86,7 +86,7 @@ void													setup											( SMap* activeMap )		{ // Accepts an address po
 }
 
 // Currently our update() function still does nothing.
-void													update											( SMap* activeMap )		{ printf("- update() called.\n"); }	// Accepts an address pointing to an SMap
+void													update											( SMap* activeMap )		{ (void)activeMap; printf("- update() called.\n"); }	// Accepts an address pointing to an SMap
 
 // The draw() function will display our generated map in the console screen.
 void													draw											( SMap someMap ) // Accepts a copy of the contents of an SMap

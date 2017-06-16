@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <stdio.h>
 
-void															setupMap							( SGame* gameObject )								{ // initialize game map
+void															setupMap							( SGame* gameObject )										{ // initialize game map
 	gameObject->Map.Width											= 32; // Set a proper width for our map, which has to be less than MAX_MAP_WIDTH
 	gameObject->Map.Depth											= 15; // Same for map depth   
 	
@@ -25,7 +25,7 @@ void															setupMap							( SGame* gameObject )								{ // initialize g
 }
 
 // Use this function to setup player at level startup.
-void															setupPlayer							( SGame* gameObject )								{
+void															setupPlayer							( SGame* gameObject )										{
 	// set some initial configuration to the player character
 	gameObject->Player.CurrentPoints.HP								= 100; 
 	gameObject->Player.x											= 5;
@@ -36,7 +36,7 @@ void															setupPlayer							( SGame* gameObject )								{
 }
 
 // Use this function to setup enemy list at level startup.
-void															setupEnemies						( SGame* gameObject )								{
+void															setupEnemies						( SGame* gameObject )										{
 #define INITIAL_ENEMY_COUNT 5
 	for( int iEnemy = 0; iEnemy < INITIAL_ENEMY_COUNT; iEnemy++ ) {
 		SCharacter															newEnemy;
@@ -51,7 +51,7 @@ void															setupEnemies						( SGame* gameObject )								{
 	}
 };
 
-void															refreshPosFromDeltas				( SCharacter* character )							{
+void															refreshPosFromDeltas				( SCharacter* character )									{
 	SVector2D															*charDeltas							= &character->PositionDeltas; // get pointer to deltas
 	
 	// Now we increase cell units and decrease deltas until the deltas are between 0 and 0.9999999999999999999999
@@ -79,10 +79,10 @@ void															refreshPosFromDeltas				( SCharacter* character )							{
 }
 
 // Use this function to update the map tiles
-void															updateMap							( SGame* gameObject, float fLastFrameTime  )		{}
+void															updateMap							( SGame* /*gameObject*/, float /*fLastFrameTime*/ )			{}
 
 // Use this function to update the player
-void															updatePlayer						( SGame* gameObject, float fLastFrameTime  )		{
+void															updatePlayer						( SGame* gameObject, float fLastFrameTime  )				{
 	SVector2D															* playerDeltas						= &gameObject->Player.PositionDeltas; // get memory address of our data (pointer)
 
 	float																fSpeed								= gameObject->Player.Speed;
@@ -101,7 +101,7 @@ void															updatePlayer						( SGame* gameObject, float fLastFrameTime  
 }
 
 // Use this function to update the enemies
-void															updateEnemies						( SGame* gameObject, float fLastFrameTime )			{
+void															updateEnemies						( SGame* gameObject, float fLastFrameTime )					{
 	for( int z = 0; z < gameObject->Map.Depth; z++ ) // clear all enemy rows to refresh the enemy map layer
 		memset( gameObject->Map.EnemyCells[z], INVALID_ENEMY, sizeof(int)*gameObject->Map.Width );
 
@@ -138,7 +138,7 @@ void															updateEnemies						( SGame* gameObject, float fLastFrameTime 
 }
 
 // This function prints the game map on the console
-void															drawASCIIMap						( const SGame* gameObject )							{
+void															drawASCIIMap						( const SGame* gameObject )									{
 	char																imageMap[4096]						= {};	// We're going to draw our map in this array. the assignment of empty brackets = {} initializes all chars in the array to 0
 	int																	nImageCursor						= 0;	// The position where we shuold position our next character
 
@@ -147,9 +147,9 @@ void															drawASCIIMap						( const SGame* gameObject )							{
 			if( gameObject->Player.x == x && gameObject->Player.z == z )
 				imageMap[nImageCursor++]										= 'P'; // draw the player as an ascii character
 			else if( gameObject->Map.EnemyCells[z][x] != INVALID_ENEMY )
-				imageMap[nImageCursor++]										= 'E'+gameObject->Map.EnemyCells[z][x]; // draw the enemy as an ascii character
+				imageMap[nImageCursor++]										= char('E' + gameObject->Map.EnemyCells[z][x]); // draw the enemy as an ascii character
 			else
-				imageMap[nImageCursor++]										= gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '; // draw the tile as an ascii character
+				imageMap[nImageCursor++]										= char(gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '); // draw the tile as an ascii character
         }
         imageMap[nImageCursor++]										= '\n'; // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row.
     }
@@ -159,7 +159,7 @@ void															drawASCIIMap						( const SGame* gameObject )							{
 }
 
 // This function prints miscelaneous game info
-void															drawASCIIGameInfo					( const SGame* gameObject )							{
+void															drawASCIIGameInfo					( const SGame* gameObject )									{
     printf( "- Player health: %i\n"
 			"- Player position: (%i, %i), deltas: (%f, %f)\n"
 			"- Enemy count: %i\n"

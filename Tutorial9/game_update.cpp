@@ -43,7 +43,7 @@ void																shoot								( SGame* gameObject, SPoint2 origin, float dire
 }
 
 // Use this function to update the map tiles
-void																updateMap							( SGame* gameObject, float fLastFrameTime  )										{}
+void																updateMap							( SGame* /*gameObject*/, float /*fLastFrameTime*/ )									{}
 
 // Use this function to update the player
 void																updatePlayer						( SGame* gameObject, float fLastFrameTime  )										{
