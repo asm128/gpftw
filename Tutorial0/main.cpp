@@ -1,3 +1,5 @@
+// (Visual Studio 2017 has a ZOOM feature which allows to see more code, the recommended setting is exactly 81% but if you like to see more code you can shrink it even more, maybe to 75% as I do sometimes)
+// 
 // A function is defined as follows, where the text between brackets would be what you would replace with your actual code: 
 //
 // [returnType]  [functionName]		([functionParameters])		{ [codeBlock]; }

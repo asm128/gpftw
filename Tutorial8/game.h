@@ -15,44 +15,47 @@
 #define GAME_2PI (2*GAME_PI)
 #define GAME_EPSILON 0.00001f
 
-struct SMap // The struct is a block of variables to be used to store our map information
-{
-    int Width, Depth; // Declare Width and Depth variables which will hold the active map size
-    int FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
-    int EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
+struct SMap { // The struct is a block of variables to be used to store our map information
+	int									Width
+		,								Depth
+		; // Declare Width and Depth variables which will hold the active map size
+	int									FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
+	int									EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
 };
 
-struct SCharacterPoints
-{
-	int HP, MP, XP; // health, mana and experience/score
+struct SCharacterPoints {
+	int									HP
+		,								MP
+		,								XP
+		; // health, mana and experience/score
 };
 
-struct SCharacter // holds character data
-{
-	SCharacterPoints MaxPoints;		
-	SCharacterPoints CurrentPoints;	
+struct SCharacter { // holds character data
+	SCharacterPoints					MaxPoints		;
+	SCharacterPoints					CurrentPoints	;
 
-	int x, z; // Coordinates in tile map
-	SVector2 PositionDeltas;
-	float Direction;	// rotation angle in radians
-	float Speed;		// cells/second
+	int									x	// Coordinates in tile map
+		,								z
+		; 
+	SVector2							PositionDeltas	;
+	float								Direction		;	// rotation angle in radians
+	float								Speed			;	// cells/second
 };
 
-struct SGame // holds the game data
-{
-    SMap Map; // declare a variable of type SMap
-	SCharacter Player; // Declare a variable of type SCharacter for the player
-	std::vector<SCharacter> Enemy;	// and another SCharacter instance for the enemy
+struct SGame { // holds the game data
+    SMap								Map; // declare a variable of type SMap
+	SCharacter							Player; // Declare a variable of type SCharacter for the player
+	::std::vector<SCharacter>			Enemy;	// and another SCharacter instance for the enemy
 };
 
 // -- game functions
-void setupMap( SGame* gameObject );		// initialize map layers
-void setupPlayer( SGame* gameObject );	// initialize player
-void setupEnemies( SGame* gameObject );	// initialize enemy list
+void								setupMap								( SGame* gameObject );	// initialize map layers
+void								setupPlayer								( SGame* gameObject );	// initialize player
+void								setupEnemies							( SGame* gameObject );	// initialize enemy list
 
-void updateMap( SGame* gameObject, float fTimeElapsed );		// update tiles
-void updatePlayer( SGame* gameObject, float fTimeElapsed );		// update player
-void updateEnemies( SGame* gameObject, float fTimeElapsed );	// update enemy AI and refresh enemy layer
+void								updateMap								( SGame* gameObject, float fTimeElapsed );	// update tiles
+void								updatePlayer							( SGame* gameObject, float fTimeElapsed );	// update player
+void								updateEnemies							( SGame* gameObject, float fTimeElapsed );	// update enemy AI and refresh enemy layer
 
-void drawASCIIMap( const SGame* gameObject );		// take the map data and print it on the console
-void drawASCIIGameInfo( const SGame* gameObject );	// print the player and misc info
+void								drawASCIIMap							( const SGame* gameObject );	// take the map data and print it on the console
+void								drawASCIIGameInfo						( const SGame* gameObject );	// print the player and misc info

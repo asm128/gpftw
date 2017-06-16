@@ -17,7 +17,7 @@ int						main							()													{	// Our application application starts from 
 
     setup( &gameInstance ); // call setup() and send the address of our data as parameters
 
-    int							frameCounter					=0; // declare a variable to keep track of the frame number
+    int							frameCounter					= 0; // declare a variable to keep track of the frame number
     while( true ) { // iterate {} while what's inside () is true
 		timer.Frame(); // query time elapsed since last Frame() call
 
@@ -29,7 +29,7 @@ int						main							()													{	// Our application application starts from 
             break;	// exit while()
         
 		Sleep(50);		// wait some time to give visual stability to the frame
-        ++frameCounter;	// increase frame counter
+        ++frameCounter;	// increament frame counter
     }
   
     return 0; // return an int

@@ -22,7 +22,9 @@ struct SMap // The struct is a block of variables to be used to store our map in
 struct SCharacter // hold character data	
 {
 	int												HP; // health points
-	int												x, z; // coordinates in map
+	int												x
+		,											z
+		; // coordinates in map
 };
 
 void											setup										( SMap* activeMap	, SCharacter* player, SCharacter* enemy );	// Accepts addresses pointing to SMap and SCharacter data
@@ -49,7 +51,7 @@ int												main										()																	{	// Application starts from her
 		
 		Sleep(150); // wait some time to give visual stability to the frame
 
-		frameCounter++; // increase frame counter
+		frameCounter++; // Increment frame count
 	}
 
 	return 0; // return an int
@@ -126,8 +128,8 @@ void draw( SMap someMap, SCharacter player, SCharacter enemy ) // Accepts a copy
         }
         printf( "\n" ); // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row.
     }
-    printf("- Enemy health: %i\n", enemy.HP);
-    printf("- Player health: %i\n", player.HP);
-    printf("- Enemy position: (%i, %i)\n", enemy.x, enemy.z);
-    printf("- Player position: (%i, %i)\n", player.x, player.z);
+    printf("- Enemy health: %i\n"			, enemy		.HP);
+    printf("- Player health: %i\n"			, player	.HP);
+    printf("- Enemy position: (%i, %i)\n"	, enemy		.x, enemy	.z);
+    printf("- Player position: (%i, %i)\n"	, player	.x, player	.z);
 }

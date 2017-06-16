@@ -22,8 +22,8 @@ typedef struct SVector2 {
 
 	// Get the angle of this vector in relation to other vector
 	float											AngleWith														( const SVector2& v )						const	{	// const methods ensure member values don't get modified
-		float												fLengths														= (this->Length() * v.Length());
-		return fLengths ? (float)acos( Dot(v) / fLengths ) : 0; // prevent divide by zero error
+		float												fLengthsProduct													= (this->Length() * v.Length());
+		return fLengthsProduct ? (float)acos( Dot(v) / fLengthsProduct ) : 0; // prevent divide by zero error
 	}
 
 	// calculate the scalar product (dot product) of the vector with another vector

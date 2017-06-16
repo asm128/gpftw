@@ -156,26 +156,23 @@ void													update										( SGame* gameObject )										{	// Accepts an 
 
 // Use this function to draw our game data and to display the results on the console screen
 void													draw										( const SGame* gameObject )									{	// Accepts an address of an SGame instance
-    printf("- draw() called.\n");
+	printf("- draw() called.\n");
 	
 	char														imageMap[4096]								= {};	// We're going to draw our map in this array. the assignment of empty brackets = {} initializes all chars in the array to 0
 	int															nImageCursor								= 0;	// The position where we shuold position our next character
 
 	for( int z=0; z< gameObject->Map.Depth; z++ ) {				// iterate over every row
-        for( int x=0; x< gameObject->Map.Width; x++ ) {				// iterate over every column for the z row
-			if( gameObject->Player.x == x && gameObject->Player.z == z )
-				imageMap[nImageCursor++]								= 'P'; // draw the player as an ascii character
-			else if( gameObject->Map.EnemyCells[z][x] != INVALID_ENEMY )
-				imageMap[nImageCursor++]								= 'E'+gameObject->Map.EnemyCells[z][x]; // draw the enemy as an ascii character
-			else
-				imageMap[nImageCursor++]								= gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '; // draw the tile as an ascii character
-        }
-        imageMap[nImageCursor++]								= '\n'; // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row.
-    }
-    imageMap[nImageCursor]									= 0; // a null char indicates the end of the character string or text.
+		for( int x=0; x< gameObject->Map.Width; x++ ) {				// iterate over every column for the z row
+				 if( gameObject->Player.x == x && gameObject->Player.z == z )	imageMap[nImageCursor++]	= 'P'; // draw the player as an ascii character
+			else if( gameObject->Map.EnemyCells[z][x] != INVALID_ENEMY )		imageMap[nImageCursor++]	= 'E' + gameObject->Map.EnemyCells[z][x]; // draw the enemy as an ascii character
+			else																imageMap[nImageCursor++]	= gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '; // draw the tile as an ascii character
+		}
+		imageMap[nImageCursor++]								= '\n'; // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row.
+	}
+	imageMap[nImageCursor]									= 0; // a null char indicates the end of the character string or text.
 
 	printf( "%s", imageMap );
-    printf( "- Player health: %i\n"
+	printf( "- Player health: %i\n"
 			"- Player position: (%i, %i)\n"
 			"- Enemy count: %i\n"
 			"Move (P)layer by pressing the arrow keys to prevent being touched by enemies E, F, G and H.\n", 

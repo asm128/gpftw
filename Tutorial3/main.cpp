@@ -4,13 +4,13 @@
 #include <stdio.h>      // for printf()
 #include <windows.h>    // for interacting with Windows
 
-#define TILE_GRASS   0  // define some values to represent our terrain tiles. #define is a preprocessor directive that allows to replace the defined identifier with a constant value or text. 
-#define TILE_WALL    1	// We use it to put some name to the values we're going to use to represent the map tiles.
-#define TILE_WATER   2
-#define TILE_LAVA    3
+#define TILE_GRASS		0	// define some values to represent our terrain tiles. #define is a preprocessor directive that allows to replace the defined identifier with a constant value or text. 
+#define TILE_WALL		1	// We use it to put some name to the values we're going to use to represent the map tiles.
+#define TILE_WATER		2
+#define TILE_LAVA		3
 
-#define MAX_MAP_WIDTH    256 // define some constant values for setting a maximum size to our game map
-#define MAX_MAP_DEPTH    256   
+#define MAX_MAP_WIDTH	256 // define some constant values for setting a maximum size to our game map
+#define MAX_MAP_DEPTH	256   
 
 struct SMap // The struct is a block of variables to be used to store our map information. 
 			// We can create instances of a structure whenever we need such variables instead of declaring each variable every time

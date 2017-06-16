@@ -166,8 +166,10 @@ void																updateShots							( SGame* gameObject, float fLastFrameTime 
 		}
 		//
 		if( gameObject->Map.EnemyCells[currentShot->z][currentShot->x] != INVALID_ENEMY ) { // damage enemy and remove shot
-			gameObject->Enemy[gameObject->Map.EnemyCells[currentShot->z][currentShot->x]].CurrentPoints.HP -= iShot->Damage; // Decrease player life if enemy position matches player position
-			gameObject->Player.CurrentPoints.XP += iShot->Damage;
+			int																		enemyIndex							= gameObject->Map.EnemyCells[currentShot->z][currentShot->x];
+			SCharacterPoints														& currentEnemyPoints				= gameObject->Enemy[enemyIndex].CurrentPoints;	// get a reference in order to reduce verbosity of our code
+			currentEnemyPoints.HP												-= iShot->Damage; // Decrease player life if enemy position matches player position
+			gameObject->Player.CurrentPoints.XP									+= iShot->Damage;
 			iShot																= gameObject->Shots.erase( iShot ); 
 			continue;
 		}

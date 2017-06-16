@@ -63,8 +63,8 @@ struct SShot : public SMovingObject {
 struct SGame { // holds the game data
     SMap											Map; // declare a variable of type SMap
 	SCharacter										Player; // Declare a variable of type SCharacter for the player
-	std::vector<SCharacter>							Enemy;	// Enemy list
-	std::vector<SShot>								Shots;		// Shot list
+	::std::vector<SCharacter>						Enemy;	// Enemy list
+	::std::vector<SShot>							Shots;		// Shot list
 };
 
 // -- game functions			
