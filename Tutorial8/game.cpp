@@ -133,7 +133,7 @@ void																updateEnemies					( SGame* gameObject, float fLastFrameTime 
 		memset( gameObject->Map.EnemyCells[z], INVALID_ENEMY, sizeof(int)*gameObject->Map.Width );
 
 	// where iEnemy stands for "i"ndex of enemy.
-	for( unsigned int iEnemy=0; iEnemy < gameObject->Enemy.size(); ++iEnemy ) {
+	for( short iEnemy = 0; iEnemy < (short)gameObject->Enemy.size(); ++iEnemy ) {
 		SCharacter																* currentEnemy					= &gameObject->Enemy[iEnemy]; // get the address of the current enemy at [iEnemy] index
 		SVector2																* enemyDeltas					= &currentEnemy->PositionDeltas;
 
@@ -160,7 +160,7 @@ void																updateEnemies					( SGame* gameObject, float fLastFrameTime 
 			currentEnemy->x														= rand() % gameObject->Map.Width;
 			currentEnemy->z														= rand() % gameObject->Map.Depth;	// set a random position for the enemy so it has to walk again in order to hit the player
 		}
-		gameObject->Map.EnemyCells[currentEnemy->z][currentEnemy->x] = iEnemy; // assign enemy index to the cell corresponding to this enemy
+		gameObject->Map.EnemyCells[currentEnemy->z][currentEnemy->x]		= iEnemy; // assign enemy index to the cell corresponding to this enemy
 	}
 }
 
@@ -195,11 +195,11 @@ void																drawASCIIGameInfo				( const SGame* gameObject )								{
 			"- Player position: (%i, %i), deltas: (%f, %f)\n"
 			"- Player direction: (%f, %f)\n"
 			"- Player angle: %f radians or %f degrees\n"
-			"- Enemy count: %i\n"
+			"- Enemy count: %u\n"
 			"Move (P)layer by pressing the arrow keys to prevent being touched by enemies E, F, G and H.\nRun by holding LEFT SHIFT while moving.", 
 			gameObject->Player.CurrentPoints.HP, gameObject->Player.x, gameObject->Player.z, 
 			gameObject->Player.PositionDeltas.x, gameObject->Player.PositionDeltas.y, 
 			dirVector.x, dirVector.y, gameObject->Player.Direction, degrees,
-			gameObject->Enemy.size() );
+			(unsigned int)gameObject->Enemy.size() );
 }
 

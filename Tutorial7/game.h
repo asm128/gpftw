@@ -1,22 +1,22 @@
 #include "point.h"		// for std::vector
 #include <vector>		// for std::vector
 
-#define MAX_MAP_WIDTH    256 // define a maximum size to our game map
-#define MAX_MAP_DEPTH    256   
+#define MAX_MAP_WIDTH	64 // define a maximum size to our game map
+#define MAX_MAP_DEPTH	64   
 
-#define TILE_GRASS   0  // define some values to represent our terrain tiles
-#define TILE_WALL    1
-#define TILE_WATER   2
-#define TILE_LAVA    3
+#define TILE_GRASS		0  // define some values to represent our terrain tiles
+#define TILE_WALL		1
+#define TILE_WATER		2
+#define TILE_LAVA		3
 
-#define INVALID_ENEMY -1
+#define INVALID_ENEMY	-1
 
 struct SMap { // The struct is a block of variables to be used to store our map information
 	int											Width
 		,										Depth
 		; // Declare Width and Depth variables which will hold the active map size
-	int											FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
-	int											EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
+	char										FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
+	char										EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
 };
 
 struct SCharacterPoints {

@@ -9,15 +9,15 @@
 #define TILE_WATER		2
 #define TILE_LAVA		3
 
-#define MAX_MAP_WIDTH	256 // define some constant values for setting a maximum size to our game map
-#define MAX_MAP_DEPTH	256   
+#define MAX_MAP_WIDTH	64 // define some constant values for setting a maximum size to our game map
+#define MAX_MAP_DEPTH	64   
 
 struct SMap // The struct is a block of variables to be used to store our map information. 
 			// We can create instances of a structure whenever we need such variables instead of declaring each variable every time
 {	// Here we begin the block of the struct definition.
 	int														Width; // Declare Width and Depth variables which will hold the active map size
-	int														Depth;   
-	int														FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
+	short int												Depth;   
+	short int												FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
 };	// struct definitions need to end with a semicolon as with any other statement. This is because declaring a struct can be part of a larger statement.
 
 // ------ We need to declare the functions here so we can use it from main(). However we define then later because we will eventually move them to another file where main() won't have access to.

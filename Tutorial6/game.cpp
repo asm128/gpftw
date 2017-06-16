@@ -87,7 +87,7 @@ void															updateEnemies										( SGame* gameObject, float /*fLastFram
 			currentEnemy->x													= rand()%gameObject->Map.Width;
 			currentEnemy->z													= rand()%gameObject->Map.Depth;	// set a random position for the enemy so it has to walk again in order to hit the player
 		}
-		gameObject->Map.EnemyCells[currentEnemy->z][currentEnemy->x]	= iEnemy; // assign enemy index to the cell corresponding to this enemy
+		gameObject->Map.EnemyCells[currentEnemy->z][currentEnemy->x]	= (char)iEnemy; // assign enemy index to the cell corresponding to this enemy
 	}
 }
 
@@ -116,7 +116,7 @@ void															drawASCIIMap										( const SGame* gameObject )								{
 void															drawASCIIGameInfo									( const SGame* gameObject )								{
 	printf( "- Player health: %i\n"
 			"- Player position: (%i, %i)\n"
-			"- Enemy count: %i\n"
+			"- Enemy count: %u\n"
 			"Move (P)layer by pressing the arrow keys to prevent being touched by enemies E, F, G and H.\n", 
-			gameObject->Player.CurrentPoints.HP, gameObject->Player.x, gameObject->Player.z, gameObject->Enemy.size() );
+			gameObject->Player.CurrentPoints.HP, gameObject->Player.x, gameObject->Player.z, (unsigned int)gameObject->Enemy.size() );
 }

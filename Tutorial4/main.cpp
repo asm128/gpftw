@@ -9,14 +9,14 @@
 #define TILE_WATER   2
 #define TILE_LAVA    3
 
-#define MAX_MAP_WIDTH    256 // define a maximum size to our game map
-#define MAX_MAP_DEPTH    256  
+#define MAX_MAP_WIDTH    64 // define a maximum size to our game map
+#define MAX_MAP_DEPTH    64  
 
 struct SMap // The struct is a block of variables to be used to store our map information
 {
 	int												Width; // Declare Width and Depth variables which will hold the active map size
-	int												Depth;  
-	int												FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
+	short int										Depth;  
+	short int										FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
 };
 
 struct SCharacter // hold character data	

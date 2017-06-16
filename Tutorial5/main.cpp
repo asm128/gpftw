@@ -10,13 +10,13 @@
 #define		TILE_WATER			2
 #define		TILE_LAVA			3
 
-#define		MAX_MAP_WIDTH		256 // define a maximum size to our game map
-#define		MAX_MAP_DEPTH		256   
+#define		MAX_MAP_WIDTH		48 // define a maximum size to our game map
+#define		MAX_MAP_DEPTH		48   
 
 struct SMap {	// The struct is a block of variables to be used to store our map information
     int														Width, Depth; // Declare Width and Depth variables which will hold the active map size
-    int														FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
-    int														EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
+    short int												FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
+    short int												EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
 };
 
 #define INVALID_ENEMY -1									
@@ -128,7 +128,7 @@ void													update										( SGame* gameObject )										{	// Accepts an 
 	for( int z = 0; z < gameObject->Map.Depth; z++ ) // clear all enemy rows to refresh the enemy map layer
 		memset( gameObject->Map.EnemyCells[z], INVALID_ENEMY, sizeof(int)*gameObject->Map.Width );
 
-	for( unsigned int iEnemy=0; iEnemy < gameObject->Enemy.size(); ++iEnemy ) {
+	for( short iEnemy = 0; iEnemy < (short)gameObject->Enemy.size(); ++iEnemy ) {
 		SCharacter													* currentEnemy								= &gameObject->Enemy[iEnemy]; // get the address of the current enemy at [iEnemy] index
 
 		if( gameObject->Player.x < currentEnemy->x )
@@ -173,7 +173,7 @@ void													draw										( const SGame* gameObject )									{	// Accepts 
 	printf( "%s", imageMap );
 	printf( "- Player health: %i\n"
 			"- Player position: (%i, %i)\n"
-			"- Enemy count: %i\n"
+			"- Enemy count: %u\n"
 			"Move (P)layer by pressing the arrow keys to prevent being touched by enemies E, F, G and H.\n", 
-			gameObject->Player.CurrentPoints.HP, gameObject->Player.x, gameObject->Player.z, gameObject->Enemy.size() );
+			gameObject->Player.CurrentPoints.HP, gameObject->Player.x, gameObject->Player.z, (unsigned int)gameObject->Enemy.size() );
 }

@@ -52,7 +52,7 @@ void																drawASCIIGameInfo					( const SGame* gameObject )											
 	printf( "- Player health: %i, Mana: %i, Experience: %i\n"
 			"- Player position: (%i, %i), deltas: (%f, %f)\n"
 			"- Player direction: (%f, %f)\n- Player angle: %f radians or %f degrees\n"
-			"- Enemy count: %i, Shot count: %i\n"
+			"- Enemy count: %u, Shot count: %u\n"
 			"Shoot with Space key. Run by holding LEFT SHIFT while moving.\nMove (P)layer by pressing the arrow keys to prevent being touched by enemies E, F, G and H."
 		, gameObject->Player.CurrentPoints.HP
 		, gameObject->Player.CurrentPoints.MP
@@ -65,7 +65,7 @@ void																drawASCIIGameInfo					( const SGame* gameObject )											
 		, dirVector.y
 		, gameObject->Player.Direction
 		, degrees
-		, gameObject->Enemy.size()
-		, gameObject->Shots.size() 
+		, (unsigned int)gameObject->Enemy.size()
+		, (unsigned int)gameObject->Shots.size() 
 	);
 };

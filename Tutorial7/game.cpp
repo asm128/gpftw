@@ -6,19 +6,19 @@ void															setupMap							( SGame* gameObject )										{ // initialize
 	gameObject->Map.Width											= 32; // Set a proper width for our map, which has to be less than MAX_MAP_WIDTH
 	gameObject->Map.Depth											= 15; // Same for map depth   
 	
-	for( int z=0; z< gameObject->Map.Depth; z = z+1 ) { // iterate over every row
-		for( int x=0; x< gameObject->Map.Width; x++ ) {	// iterate over every column for the z row
+	for( int z = 0; z < gameObject->Map.Depth; z = z+1 ) { // iterate over every row
+		for( int x = 0; x < gameObject->Map.Width; x++ ) {	// iterate over every column for the z row
 			gameObject->Map.FloorCells[z][x]								= TILE_GRASS; // initialize the (x,z) map cell to "grass"
 			gameObject->Map.EnemyCells[z][x]								= INVALID_ENEMY;	// initialize the cell to an invalid enemy
 		}
 	}
 	
 	// set a wall border
-	for( int x=0; x < gameObject->Map.Width; x++ ) {
+	for( int x = 0; x < gameObject->Map.Width; x++ ) {
 		gameObject->Map.FloorCells[0][x]								= TILE_WALL; // set all cells in the first row [0]   
 		gameObject->Map.FloorCells[gameObject->Map.Depth-1][x]			= TILE_WALL; // set all cells in the last row [depth-1]
 	}
-	for( int z=0; z < gameObject->Map.Depth; z++ ) {
+	for( int z = 0; z < gameObject->Map.Depth; z++ ) {
 		gameObject->Map.FloorCells[z][0]								= TILE_WALL; // set all cells for the first column [0]   
 		gameObject->Map.FloorCells[z][gameObject->Map.Width-1]			= TILE_WALL; // set all cells for the last column [width-1]
 	}
@@ -106,7 +106,7 @@ void															updateEnemies						( SGame* gameObject, float fLastFrameTime 
 		memset( gameObject->Map.EnemyCells[z], INVALID_ENEMY, sizeof(int)*gameObject->Map.Width );
 
 	// where iEnemy stands for "i"ndex of enemy.
-	for( unsigned int iEnemy=0; iEnemy < gameObject->Enemy.size(); iEnemy++ ) {
+	for( char iEnemy = 0; iEnemy < (char)gameObject->Enemy.size(); iEnemy++ ) {
 		SCharacter															* currentEnemy						= &gameObject->Enemy[iEnemy]; // get the address of the current enemy at [iEnemy] index
 		SVector2D															* enemyDeltas						= &currentEnemy->PositionDeltas;
 
@@ -162,8 +162,8 @@ void															drawASCIIMap						( const SGame* gameObject )									{
 void															drawASCIIGameInfo					( const SGame* gameObject )									{
     printf( "- Player health: %i\n"
 			"- Player position: (%i, %i), deltas: (%f, %f)\n"
-			"- Enemy count: %i\n"
+			"- Enemy count: %u\n"
 			"Move (P)layer by pressing the arrow keys to prevent being touched by enemies E, F, G and H.\n", 
 			gameObject->Player.CurrentPoints.HP, gameObject->Player.x, gameObject->Player.z, 
-			gameObject->Player.PositionDeltas.x, gameObject->Player.PositionDeltas.y, gameObject->Enemy.size() );
+			gameObject->Player.PositionDeltas.x, gameObject->Player.PositionDeltas.y, (unsigned int)gameObject->Enemy.size() );
 }

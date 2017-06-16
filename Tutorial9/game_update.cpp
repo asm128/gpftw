@@ -101,7 +101,7 @@ void																updateEnemies						( SGame* gameObject, float fLastFrameTime
 
 	// An iterator is required for std::vector<SCharacter>::erase().
 	std::vector<SCharacter>::iterator										iEnemy								= gameObject->Enemy.begin(); // 
-	int																		indexEnemy							= 0; // keep track of enemy index
+	short																	indexEnemy							= 0; // keep track of enemy index
 	while( iEnemy != gameObject->Enemy.end() ) {
 		SCharacter																* currentEnemy						= &gameObject->Enemy[indexEnemy]; // get the address of the current enemy at [iEnemy] index
 		SVector2																* enemyDeltas						= &currentEnemy->PositionDeltas;
@@ -145,7 +145,7 @@ void																updateShots							( SGame* gameObject, float fLastFrameTime 
 		memset( gameObject->Map.ShotsCells[z], INVALID_SHOT, sizeof(int)*gameObject->Map.Width );
 
 	std::vector<SShot>::iterator											iShot								= gameObject->Shots.begin(); // 
-	int																		indexShot							= 0;
+	short 																	indexShot							= 0;
 	while( iShot != gameObject->Shots.end() ) {
 		SShot																	* currentShot						= &gameObject->Shots[indexShot]; 
 		SVector2																* shotDeltas						= &currentShot->PositionDeltas;
