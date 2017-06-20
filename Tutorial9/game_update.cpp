@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 
-void																refreshPosFromDeltas			( SCharacter* character )								{
+void																refreshPosFromDeltas			( SMovingObject* character )															{
 	SVector2																*charDeltas						= &character->PositionDeltas; // get pointer to deltas
 	
 	// Now we increase cell units and decrease deltas until the deltas are between 0 and 0.9999999999999999999999
