@@ -2,30 +2,26 @@
 
 #include <Windows.h>
 
-void																refreshPosFromDeltas				( SMovingObject* character )														{
-	SVector2																* charDeltas						= &character->PositionDeltas; // get pointer to deltas
+void																refreshPosFromDeltas			( SCharacter* character )								{
+	SVector2																*charDeltas						= &character->PositionDeltas; // get pointer to deltas
 	
 	// Now we increase cell units and decrease deltas until the deltas are between 0 and 0.9999999999999999999999
 	// Update X coordinate
-	while( charDeltas->x >= 1.0f ) {
-		character->x														+= 1;
-		charDeltas->x														-= 1.0f;
-	}
-
-	while( charDeltas->x < 0.0f ) {
+	int																		deltaX							= (int)charDeltas->x;
+	character->x														+= deltaX;
+	charDeltas->x														-= deltaX;
+	if(charDeltas->x < 0) {
 		character->x														-= 1;
-		charDeltas->x														+= 1.0f;
+		charDeltas->x														+= 1;
 	}
-
+	
 	// Update Y coordinate
-	while( charDeltas->y >= 1.0f ) {
-		character->z														+= 1;
-		charDeltas->y														-= 1.0f;
-	}
-
-	while( charDeltas->y < 0.0f ) {
-		character->z														-= 1;
-		charDeltas->y														+= 1.0f;
+	int																		deltaY							= (int)charDeltas->y;
+	character	->z														+= deltaY;
+	charDeltas	->y														-= deltaY;
+	if(charDeltas->y < 0) {
+		character	->z														-= 1;
+		charDeltas	->y														+= 1;
 	}
 }
 
