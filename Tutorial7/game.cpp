@@ -49,7 +49,7 @@ void															setupEnemies						( SGame* gameObject )										{
 
 		gameObject->Enemy.push_back( newEnemy ); // copy the new enemy as a new element at the end of our enemy list.
 	}
-};
+}
 
 void															refreshPosFromDeltas				( SCharacter* character )									{
 	SVector2D															*charDeltas							= &character->PositionDeltas; // get pointer to deltas

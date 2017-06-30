@@ -68,4 +68,4 @@ void																drawASCIIGameInfo					( const SGame* gameObject )											
 		, (unsigned int)gameObject->Enemy.size()
 		, (unsigned int)gameObject->Shots.size() 
 	);
-};
+}

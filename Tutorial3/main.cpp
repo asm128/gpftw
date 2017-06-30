@@ -62,7 +62,6 @@ void													setup											( SMap* activeMap )		{ // Accepts an address po
 	//	{ 
 	//		[your code block]; 
 	//	}
-
 	for( int z = 0; z < activeMap->Depth; z = z+1 ) // iterate over every row. This loop ends when z is equal to the map depth. At the end of each iteration, z is incremented by one.
 	{
 		for( int x = 0; x < activeMap->Width; x++ ) // iterate over every column for the x row. This loop ends when x is equal to the map width
@@ -101,4 +100,4 @@ void													draw											( SMap someMap ) // Accepts a copy of the conten
 
         printf( "\n" ); // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row of the console screen.
     }
-};
+}

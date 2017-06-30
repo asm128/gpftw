@@ -18,7 +18,6 @@
 ///
 /// int	beCreative(int argc, char* argv)	{ return 0; }
 /// ------------------------------------------------------------------------------------------------------------------
-
 int		main	()	/// The program starts from here.
 {
 	printf("Hello World!\n");  // Print some text with a function taken from <stdio.h>

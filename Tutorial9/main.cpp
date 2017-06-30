@@ -110,4 +110,4 @@ void															draw															( const SGame* gameObject )								{	// Ac
 		drawASCIIMap( gameObject );
 
 	drawASCIIGameInfo( gameObject );
-};
+}

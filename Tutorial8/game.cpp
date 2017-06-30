@@ -198,4 +198,3 @@ void																drawASCIIGameInfo				( const SGame* gameObject )								{
 			dirVector.x, dirVector.y, gameObject->Player.Direction, degrees,
 			(unsigned int)gameObject->Enemy.size() );
 }
-

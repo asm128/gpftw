@@ -21,7 +21,7 @@ void																setupMap							( SGame* gameObject ) 																{	// in
 		gameObject->Map.FloorCells[z][0] = TILE_WALL; // set all cells for the first column [0]   
 		gameObject->Map.FloorCells[z][gameObject->Map.Width-1]				= TILE_WALL; // set all cells for the last column [width-1]
 	}
-};
+}
 
 // Use this function to setup player at level startup.
 void																setupPlayer							( SGame* gameObject )																{
