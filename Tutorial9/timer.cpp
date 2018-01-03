@@ -10,6 +10,6 @@ void							STimer::Reset											()								{
 
 void							STimer::Frame											()								{
 	QueryPerformanceCounter( ( LARGE_INTEGER* ) &CurrentTimeStamp );
-	LastTime						=  (float)(( CurrentTimeStamp - PrevTimeStamp )* SecondsPerCount);
+	LastTime						= (float)(( CurrentTimeStamp - PrevTimeStamp ) * SecondsPerCount);
 	PrevTimeStamp					= CurrentTimeStamp;
 }

@@ -2,45 +2,45 @@
 #include <Windows.h>
 #include <stdio.h>
 
-void														setupMap											( SGame* gameObject )										{	// initialize game map
-	gameObject->Map.Width										= 32; // Set a proper width for our map, which has to be less than MAX_MAP_WIDTH
-	gameObject->Map.Depth										= 15; // Same for map depth   
+void															setupMap											( SGame* gameObject )										{	// initialize game map
+	gameObject->Map.Width											= 32; // Set a proper width for our map, which has to be less than MAX_MAP_WIDTH
+	gameObject->Map.Depth											= 15; // Same for map depth   
 	
-	for( int z=0; z< gameObject->Map.Depth; z = z+1 ) {	// iterate over every row
-		for( int x=0; x< gameObject->Map.Width; x++ ) {	// iterate over every column for the z row
-			gameObject->Map.FloorCells[z][x]							= TILE_GRASS; // initialize the (x,z) map cell to "grass"
-			gameObject->Map.EnemyCells[z][x]							= INVALID_ENEMY;	// initialize the cell to an invalid enemy
+	for( int z = 0; z < gameObject->Map.Depth; z = z + 1 ) {	// iterate over every row
+		for( int x = 0; x < gameObject->Map.Width; x++ ) {	// iterate over every column for the z row
+			gameObject->Map.FloorCells[z][x]								= TILE_GRASS; // initialize the (x,z) map cell to "grass"
+			gameObject->Map.EnemyCells[z][x]								= INVALID_ENEMY;	// initialize the cell to an invalid enemy
 		}
 	}
 
     // set a wall border
     for( int x = 0; x < gameObject->Map.Width; ++x ) {
-        gameObject->Map.FloorCells[0][x]							= TILE_WALL; // set all cells in the first row [0]   
-        gameObject->Map.FloorCells[gameObject->Map.Depth-1][x]		= TILE_WALL; // set all cells in the last row [depth-1]
+        gameObject->Map.FloorCells[0][x]								= TILE_WALL; // set all cells in the first row [0]   
+        gameObject->Map.FloorCells[gameObject->Map.Depth - 1][x]		= TILE_WALL; // set all cells in the last row [depth-1]
 	}
     for( int z = 0; z < gameObject->Map.Depth; ++z ) {
-        gameObject->Map.FloorCells[z][0]							= TILE_WALL; // set all cells for the first column [0]   
-        gameObject->Map.FloorCells[z][gameObject->Map.Width-1]		= TILE_WALL; // set all cells for the last column [width-1]
+        gameObject->Map.FloorCells[z][0]								= TILE_WALL; // set all cells for the first column [0]   
+        gameObject->Map.FloorCells[z][gameObject->Map.Width - 1]		= TILE_WALL; // set all cells for the last column [width-1]
 	}
 };
 
 // Use this function to setup player at level startup.
-void														setupPlayer											( SGame* gameObject )										{
-	// set some initial configuration to the game characters
-	gameObject->Player.CurrentPoints.HP							= 100; 
-	gameObject->Player.x										= 5;
-	gameObject->Player.z										= 5;
+void															setupPlayer											( SGame* gameObject )										{
+	// set some initial configuration to the game characters	
+	gameObject->Player.CurrentPoints.HP								= 100; 
+	gameObject->Player.x											= 5;
+	gameObject->Player.z											= 5;
 }
 
 // Use this function to setup enemy list at level startup.
-void														setupEnemies										( SGame* gameObject )										{
+void															setupEnemies										( SGame* gameObject )										{
 #define INITIAL_ENEMY_COUNT 4
 	for( int iEnemy = 0; iEnemy < INITIAL_ENEMY_COUNT; ++iEnemy ) {
-		SCharacter														newEnemy;
-		newEnemy.MaxPoints											= { 100, 50, 1000000 }; // HP, MP and XP
-		newEnemy.CurrentPoints										= { 100, 50, 0 };
-		newEnemy.x													= rand() % gameObject->Map.Width;
-		newEnemy.z													= rand() % gameObject->Map.Depth;
+		SCharacter															newEnemy;
+		newEnemy.MaxPoints												= { 100, 50, 1000000 }; // HP, MP and XP
+		newEnemy.CurrentPoints											= { 100, 50, 0 };
+		newEnemy.x														= rand() % gameObject->Map.Width;
+		newEnemy.z														= rand() % gameObject->Map.Depth;
 
 		gameObject->Enemy.push_back( newEnemy ); // copy the new enemy as a new element at the end of our enemy list.
 	}
@@ -63,10 +63,10 @@ void															updatePlayer										( SGame* gameObject, float /*fLastFrame
 
 // Use this function to update the enemies
 void															updateEnemies										( SGame* gameObject, float /*fLastFrameTime*/ )			{
-	for( int z = 0; z < gameObject->Map.Depth; z++ ) // clear all enemy rows to refresh the enemy map layer
-		memset( gameObject->Map.EnemyCells[z], INVALID_ENEMY, sizeof(int)*gameObject->Map.Width );
+	for( int z = 0; z < gameObject->Map.Depth; ++z ) // clear all enemy rows to refresh the enemy map layer
+		memset(gameObject->Map.EnemyCells[z], INVALID_ENEMY, sizeof(int) * gameObject->Map.Width);
 
-	for( unsigned int iEnemy=0; iEnemy < gameObject->Enemy.size(); iEnemy++ ) {
+	for( unsigned int iEnemy = 0; iEnemy < gameObject->Enemy.size(); ++iEnemy ) {
 		SCharacter															* currentEnemy										= &gameObject->Enemy[iEnemy]; // get the address of the current enemy at [iEnemy] index
 
 		if( gameObject->Player.x < currentEnemy->x )
@@ -75,9 +75,9 @@ void															updateEnemies										( SGame* gameObject, float /*fLastFram
 			currentEnemy->x													+= 1;	// increase enemy x if player is in that direction
 	
 		if( gameObject->Player.z < currentEnemy->z )
-			currentEnemy->z --;	// decrease enemy z if player is in that direction
+			currentEnemy->z--;	// decrease enemy z if player is in that direction
 		else if( gameObject->Player.z > currentEnemy->z )
-			currentEnemy->z ++;	// increase enemy z if player is in that direction
+			currentEnemy->z++;	// increase enemy z if player is in that direction
 
 		if( gameObject->Player.z == currentEnemy->z 
 		 && gameObject->Player.x == currentEnemy->x 
@@ -93,7 +93,7 @@ void															updateEnemies										( SGame* gameObject, float /*fLastFram
 
 // This function prints the game map on the console
 void															drawASCIIMap										( const SGame* gameObject )								{
-	char																imageMap[4096]										= {};	// We're going to draw our map in this array. the assignment of empty brackets = {} initializes all chars in the array to 0
+	char																imageMap		[4096]								= {};	// We're going to draw our map in this array. the assignment of empty brackets = {} initializes all chars in the array to 0
 	int																	nImageCursor										= 0;	// The position where we shuold position our next character
 
 	for( int z = 0; z < gameObject->Map.Depth; z++ ) { // iterate over every row

@@ -14,9 +14,9 @@
 #define		MAX_MAP_DEPTH		48   
 
 struct SMap {	// The struct is a block of variables to be used to store our map information
-    int														Width, Depth; // Declare Width and Depth variables which will hold the active map size
-    short int												FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
-    short int												EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
+	int														Width, Depth; // Declare Width and Depth variables which will hold the active map size
+	short int												FloorCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array of integers which can be accessed as FloorCells[y][x] and will hold values for representing the terrain
+	short int												EnemyCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the enemy list.
 };
 
 #define INVALID_ENEMY -1									
@@ -36,7 +36,7 @@ struct SCharacter { // holds character data
 };
 
 struct SGame { // holds the game data
-    SMap													Map		; // declare a variable of type SMap
+	SMap													Map		; // declare a variable of type SMap
 	SCharacter												Player	; // Declare a variable of type SCharacter for the player
 	std::vector<SCharacter>									Enemy	;	// and another SCharacter instance for the enemy
 };
@@ -55,13 +55,13 @@ int														main										()															{	// The application starts from
 		
 		update	( &gameInstance ); // update frame, send game data address to update() call
 		draw	( &gameInstance ); // render game data
-		
+
 		if(GetAsyncKeyState(VK_ESCAPE)) // check for escape key pressed
 			break; // exit while()
 
 		Sleep(100); // wait some time to give visual stability to the frame and to give the game a playable speed.
 
-		frameCounter++;	// increase frame counter
+		++frameCounter;	// increase frame counter
 	}
 	return 0; // return an int
 }
@@ -69,14 +69,14 @@ int														main										()															{	// The application starts from
 // Use this function to setup enemy list at level startup.
 void													setupEnemies								( SGame* gameObject )										{
 #define INITIAL_ENEMY_COUNT 4
-	for( int iEnemy=0; iEnemy < INITIAL_ENEMY_COUNT; iEnemy++ ) {
+	for(int iEnemy=0; iEnemy < INITIAL_ENEMY_COUNT; ++iEnemy) {
 		SCharacter													newEnemy;
 		newEnemy.MaxPoints										= { 100, 50, 1000000 }; // HP, MP and XP
 		newEnemy.CurrentPoints									= { 100, 50, 0 };
 		newEnemy.x												= rand() % gameObject->Map.Width;
 		newEnemy.z												= rand() % gameObject->Map.Depth;
 
-		gameObject->Enemy.push_back( newEnemy ); // copy the new enemy as a new element at the end of our enemy list.
+		gameObject->Enemy.push_back(newEnemy); // copy the new enemy as a new element at the end of our enemy list.
 	}
 
 }
@@ -88,18 +88,18 @@ void													setup										( SGame* gameObject )										{	// Accepts an a
 	gameObject->Map.Width									= 32; // Set a proper width for our map, which has to be less than MAX_MAP_WIDTH
 	gameObject->Map.Depth									= 19; // Same for map depth   
 
-	for( int z = 0; z< gameObject->Map.Depth; z = z+1 )	// iterate over every row
-		for( int x=0; x< gameObject->Map.Width; ++x ) {		// iterate over every column for the z row
+	for( int z = 0; z < gameObject->Map.Depth; z = z+1 )	// iterate over every row
+		for( int x = 0; x < gameObject->Map.Width; ++x ) {		// iterate over every column for the z row
 			gameObject->Map.FloorCells[z][x]						= TILE_GRASS;		// initialize the (x,z) map cell to "grass"
 			gameObject->Map.EnemyCells[z][x]						= INVALID_ENEMY;	// initialize the cell to an invalid enemy
 		}
 
 	// set a wall border
-	for( int x=0; x < gameObject->Map.Width; x++ ) {
+	for( int x = 0; x < gameObject->Map.Width; x++ ) {
 		gameObject->Map.FloorCells[0][x]						= TILE_WALL; // set all cells in the first row [0]   
 		gameObject->Map.FloorCells[gameObject->Map.Depth-1][x]	= TILE_WALL; // set all cells in the last row [depth-1]
 	}
-	for( int z=0; z < gameObject->Map.Depth; z++ ) {
+	for( int z = 0; z < gameObject->Map.Depth; z++ ) {
 		gameObject->Map.FloorCells[z][0]						= TILE_WALL; // set all cells in the first column [0]   
 		gameObject->Map.FloorCells[z][gameObject->Map.Width-1]	= TILE_WALL; // set all cells in the last column [width-1]
 	}
@@ -162,9 +162,9 @@ void													draw										( const SGame* gameObject )									{	// Accepts 
 
 	for( int z=0; z< gameObject->Map.Depth; z++ ) {				// iterate over every row
 		for( int x=0; x< gameObject->Map.Width; x++ ) {				// iterate over every column for the z row
-				 if( gameObject->Player.x == x && gameObject->Player.z == z )	imageMap[nImageCursor++]	= 'P'; // draw the player as an ascii character
-			else if( gameObject->Map.EnemyCells[z][x] != INVALID_ENEMY )		imageMap[nImageCursor++]	= char('E' + gameObject->Map.EnemyCells[z][x]); // draw the enemy as an ascii character
-			else																imageMap[nImageCursor++]	= char(gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '); // draw the tile as an ascii character
+				 if( gameObject->Player.x == x && gameObject->Player.z == z )	imageMap[nImageCursor++]				= 'P'; // draw the player as an ascii character
+			else if( gameObject->Map.EnemyCells[z][x] != INVALID_ENEMY )		imageMap[nImageCursor++]				= char('E' + gameObject->Map.EnemyCells[z][x]); // draw the enemy as an ascii character
+			else																imageMap[nImageCursor++]				= char(gameObject->Map.FloorCells[z][x] ? gameObject->Map.FloorCells[z][x] : ' '); // draw the tile as an ascii character
 		}
 		imageMap[nImageCursor++]								= '\n'; // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row.
 	}

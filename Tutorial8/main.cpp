@@ -21,7 +21,7 @@ int																	main							()													{		// The application starts from 
 	while( true ) { // iterate {} while what's inside () is true
 		timer.Frame(); // query time elapsed since last Frame() call
 
-		printf("Current frame number: %i\n" "Last frame time: %f\n", frameCounter, timer.LastTime );
+		printf	("Current frame number: %i\n" "Last frame time: %f\n", frameCounter, timer.LastTime);
 		update	( &gameInstance, timer.LastTime ); // send frame time to update() 
 		draw	( &gameInstance ); // render game data
 		

@@ -58,30 +58,26 @@ void													setup											( SMap* activeMap )		{ // Accepts an address po
 	
 	// The "for" statement allows us to iterate over the indices or cells of our map. The syntax of a for() statement is something as follows:	
 	//
-	//	for( [initial statement]; [conditionToContinueIterating]; [statement to execute after each iteration]) 
+	//	for( [initial statement]; [conditionToContinueIterating]; [statement to execute after each iteration] )
 	//	{ 
-	//		[your code block]; 
+	//		[your statements]; 
 	//	}
-	for( int z = 0; z < activeMap->Depth; z = z+1 ) // iterate over every row. This loop ends when z is equal to the map depth. At the end of each iteration, z is incremented by one.
-	{
-		for( int x = 0; x < activeMap->Width; x++ ) // iterate over every column for the x row. This loop ends when x is equal to the map width
-		{
+	for( int z = 0; z < activeMap->Depth; z = z + 1 ) { // iterate over every row. This loop ends when z is equal to the map depth. At the end of each iteration, z is incremented by one.
+		for( int x = 0; x < activeMap->Width; x++ ) { // iterate over every column for the x row. This loop ends when x is equal to the map width
 			activeMap->FloorCells[z][x]								= TILE_GRASS; // initialize the (x,z) map cell to "grass"
 		}
 	}
 
 	// set a wall border
-	for( int x=0; x< activeMap->Width; x++ )   
+	for( int x = 0; x < activeMap->Width; ++x ) {
 		activeMap->FloorCells[0][x]								= TILE_WALL; // set all cells in the first row [0]   
+		activeMap->FloorCells[activeMap->Depth - 1][x]			= TILE_WALL; // set all cells in the last row [depth-1]   
+	}
 	
-	for( int x=0; x< activeMap->Width; x++ )       
-		activeMap->FloorCells[activeMap->Depth-1][x]			= TILE_WALL; // set all cells in the last row [depth-1]   
-	
-	for( int z=0; z< activeMap->Depth; z++ )   
+	for( int z = 0; z < activeMap->Depth; ++z ) {
 		activeMap->FloorCells[z][0]								= TILE_WALL; // set all cells in the first column [0]   
-	
-	for( int z=0; z< activeMap->Depth; z++ )   
-		activeMap->FloorCells[z][activeMap->Width-1]			= TILE_WALL; // set all cells in the last column [width-1]   
+		activeMap->FloorCells[z][activeMap->Width - 1]			= TILE_WALL; // set all cells in the last column [width-1]   
+	}
 }
 
 // Currently our update() function still does nothing.
@@ -90,14 +86,12 @@ void													update											( SMap* activeMap )		{ (void)activeMap; printf
 // The draw() function will display our generated map in the console screen.
 void													draw											( SMap someMap ) // Accepts a copy of the contents of an SMap
 {
-    printf("- draw() called.\n");
-    for( int z=0; z< someMap.Depth; z++ ) // iterate over every row
-    {
-        for( int x=0; x< someMap.Width; x++ ) // iterate over every column for the z row
-        {
-            printf( "%c", someMap.FloorCells[z][x] ); // draw the contents of the cell at (x,z) as an ascii character
-        }
+	printf("- draw() called.\n");
+	for( int z=0; z< someMap.Depth; z++ ) // iterate over every row
+	{
+		for( int x=0; x< someMap.Width; x++ ) // iterate over every column for the z row
+			printf( "%c", someMap.FloorCells[z][x] ); // draw the contents of the cell at (x,z) as an ascii character
 
-        printf( "\n" ); // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row of the console screen.
-    }
+		printf( "\n" ); // \n is the code character for "new line" inside a text. We use it to display the next cells in the next row of the console screen.
+	}
 }

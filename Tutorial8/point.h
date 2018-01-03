@@ -14,7 +14,7 @@ typedef struct SVector2 {
 	SVector2						operator +						( const SVector2& other )						const	{ return SVector2( x + other.x, y + other.y );	}
 
 	// --- methods
-	float							Dot								( const SVector2& other )						const	{	return x * other.x + y * other.y;			}
+	float							Dot								( const SVector2& other )						const	{ return x * other.x + y * other.y;				}
 	// Calculate the length of the vector
 	float							Length							()												const	{	// const methods can't modify member variables nor call non-const methods
 		float								l								= x * x + y * y; // calculate squared length

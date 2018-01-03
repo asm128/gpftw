@@ -17,7 +17,7 @@
 // int	beCreative(int argc, char* argv)	{ return 0; }
 // ------------------------------------------------------------------------------------------------------------------
 
-void	main	()	// entry point function with void return value (no return value) and empty parameter list between parentheses. The program code starts executing from here (from the main() function) when the operating system cranks up the .exe
-{
-	// empty block of program code between curly braces {}
+int	main	()	// entry point function with void return value (no return value) and empty parameter list between parentheses. The program code starts executing from here (from the main() function) when the operating system cranks up the .exe
+{ // code block of program code between curly braces {}
+	return 0; 
 }

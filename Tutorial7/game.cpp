@@ -84,7 +84,6 @@ void															updateMap							( SGame* /*gameObject*/, float /*fLastFrameTi
 // Use this function to update the player
 void															updatePlayer						( SGame* gameObject, float fLastFrameTime  )				{
 	SVector2D															* playerDeltas						= &gameObject->Player.PositionDeltas; // get memory address of our data (pointer)
-
 	float																fSpeed								= gameObject->Player.Speed;
 	// Update position from speed*time
 	if(GetAsyncKeyState(VK_UP))
@@ -96,8 +95,7 @@ void															updatePlayer						( SGame* gameObject, float fLastFrameTime  
 	if(GetAsyncKeyState(VK_LEFT))
 		playerDeltas->x													-= fSpeed*fLastFrameTime; // decrease by speed*time
 
-	// refresh SCharacter::x and SCharacter::z now that we have accumulated the distance walked this frame
-	refreshPosFromDeltas( &gameObject->Player );
+	refreshPosFromDeltas( &gameObject->Player );	// refresh SCharacter::x and SCharacter::z now that we have accumulated the distance walked this frame
 }
 
 // Use this function to update the enemies

@@ -9,7 +9,7 @@
 int						main							()													{	// Our application application starts from here
 	STimer						timer;
 
-    int							frameCounter					=0; // declare a variable to keep track of the frame number
+    int							frameCounter					= 0; // declare a variable to keep track of the frame number
     while( true ) { // iterate {} while what's inside () is true
 		timer.Frame(); // query time elapsed since last Frame() call
 

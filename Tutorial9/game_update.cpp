@@ -8,11 +8,11 @@ void																refreshPosFromDeltas			( SMovingObject* character )									
 	// Now we increase cell units and decrease deltas until the deltas are between 0 and 0.9999999999999999999999
 	// Update X coordinate
 	int																		deltaX							= (int)charDeltas->x;
-	character->x														+= deltaX;
-	charDeltas->x														-= deltaX;
+	character	->x														+= deltaX;
+	charDeltas	->x														-= deltaX;
 	if(charDeltas->x < 0) {
-		character->x														-= 1;
-		charDeltas->x														+= 1;
+		character	->x														-= 1;
+		charDeltas	->x														+= 1;
 	}
 	
 	// Update Y coordinate

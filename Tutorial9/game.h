@@ -26,8 +26,7 @@ struct SMap // The struct is a block of variables to be used to store our map in
     short int										ShotsCells[MAX_MAP_DEPTH][MAX_MAP_WIDTH]; // 2-Dimensional array which holds indices to the shot list.
 };
 
-struct SCharacterPoints
-{
+struct SCharacterPoints {
 	int												HP	// health, mana and experience/score
 		,											MP
 		,											XP
