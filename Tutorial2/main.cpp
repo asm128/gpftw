@@ -2,7 +2,7 @@
 //		Also useful for copy & paste operations in which you need to copy a bunch of variable or function names and you can't afford the time of copying them one by one.
 //
 #include <stdio.h>      // for printf()
-#include <windows.h>    // for interacting with Windows
+#include <windows.h>    // for interacting with Windows with GetAsyncKeyState()
 
 // Define some functions to use from main(). These functions will contain our game code.
 void						setup								()				{ printf("- setup() called.\n"	); }
@@ -18,8 +18,8 @@ int							main								()				{
 
 		update	();		// Update frame.
 		draw	();		// Render frame.
-		if(GetAsyncKeyState(VK_ESCAPE)) // Check for escape key pressed.
-		{
+		if(GetAsyncKeyState(VK_ESCAPE)) // Check for escape key pressed and execute code between braces if the condition between () evaluates to "true".
+		{ 
 		    break; // Exit while() loop.
 		}
 		Sleep(50);	// Wait 50 milliseconds then continue executing
