@@ -119,6 +119,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>/permissive-</AdditionalOptions>
       <ConformanceMode>true</ConformanceMode>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +161,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>/permissive-</AdditionalOptions>
       <ConformanceMode>true</ConformanceMode>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
