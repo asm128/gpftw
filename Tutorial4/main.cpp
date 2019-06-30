@@ -24,11 +24,12 @@ struct SCharacter { // holds character data
 	int												x, z;	// coordinates in map
 };
 
-void											setup										(SMap* activeMap	, SCharacter*	player, SCharacter*	enemy);	// Accepts addresses pointing to SMap and SCharacter data
-void											update										(SMap* activeMap	, SCharacter*	player, SCharacter*	enemy);	// We can now modify our player and enemy data from these functions
-void											draw										(SMap someMap		, SCharacter	player, SCharacter	enemy);	// Accepts a copy of the data found in the game structures.
+void											setup										(SMap*	activeMap	, SCharacter*	player, SCharacter*	enemy);	// Accepts addresses pointing to SMap and SCharacter data
+void											update										(SMap*	activeMap	, SCharacter*	player, SCharacter*	enemy);	// We can now modify our player and enemy data from these functions
+void											draw										(SMap	someMap		, SCharacter	player, SCharacter	enemy);	// Accepts a copy of the data found in the game structures.
 
-int												main										()																	{	// Application starts from here
+int												main										()		
+{	// Application starts from here
 	SMap												gameMap;			// declare a variable of type SMap. This is almost the same as defining each variable of SMap but shorter, and we can acess to the members with a dot, as in gameMap.Width or gameMap.FloorCells[z][x]
 	SCharacter											playerCharacter;	// Declare a variable of type SCharacter for the player
 	SCharacter											enemyCharacter;		// and another SCharacter instance for the enemy

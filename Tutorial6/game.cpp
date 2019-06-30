@@ -81,8 +81,7 @@ void															updateEnemies										( SGame* gameObject, float /*fLastFram
 
 		if( gameObject->Player.z == currentEnemy->z 
 		 && gameObject->Player.x == currentEnemy->x 
-		 )
-		{
+		 ) {
 			gameObject->Player.CurrentPoints.HP								-= 1; // Decrease player life if enemy position matches player position
 			currentEnemy->x													= rand()%gameObject->Map.Width;
 			currentEnemy->z													= rand()%gameObject->Map.Depth;	// set a random position for the enemy so it has to walk again in order to hit the player
